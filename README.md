@@ -3,7 +3,7 @@
 ### Requirements:
 - [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-
+---
 ## Create ECR repository with Terraform:
 
 #### Clone repository:
@@ -38,28 +38,37 @@ $ terraform apply
 ---
 ## Push image to your repository:
 
-1. Authenticate to your registry:
+- Authenticate to your registry:
 ```
 $ aws ecr get-login-password --region 'Your AWS region' | docker login --username AWS --password-stdin 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com
 ```
 
-2. Build image:
+- Build image:
 Go to folder with your Dockerfile
 ```
 $ docker build -t 'image name' .
 ```
 
-3. After the build completes, tag your image so you can push the image to this repository:
+- After the build completes, tag your image so you can push the image to this repository:
 ```
 $ docker tag 'image name':latest 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com/'image name':latest
 ```
 
-4. Run the following command to push this image to your newly created AWS repository:
+- Run the following command to push this image to your newly created AWS repository:
 ```
 $ docker push 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com/'image name':latest
 ```
 ---
-## Pull image to your repository:
+## Pull image from repository:
 ```
 $ docker pull 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com/'image name':latest
+```
+---
+## Clear resources
+
+- Delete all images from your repository
+- Destroy ECR repository:
+In folder terraform
+```
+$ terraform destroy
 ```
