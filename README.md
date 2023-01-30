@@ -13,8 +13,8 @@ $ git clone https://github.com/MykhailoPasiechnyk/aws-ecr.git
 ```
 
 #### Change terraform.tfvars:
-aws_region = "Your aws region"
-name       = "repository name"
+- aws_region = "Your aws region"
+- name       = "repository name"
 
 ### Set environment for Terraform:
 
@@ -57,4 +57,9 @@ $ docker tag 'image name':latest 'Your AWS account ID'.dkr.ecr.'Your AWS region'
 4. Run the following command to push this image to your newly created AWS repository:
 ```
 $ docker push 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com/'image name':latest
+```
+---
+## Pull image to your repository:
+```
+$ docker pull 'Your AWS account ID'.dkr.ecr.'Your AWS region'.amazonaws.com/'image name':latest
 ```
